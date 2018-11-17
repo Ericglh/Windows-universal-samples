@@ -22,10 +22,11 @@ namespace SDKTemplate
 
         readonly List<Scenario> scenarios = new List<Scenario>
         {
-            new Scenario() { Title="Show All Profiles", ClassType=typeof(S1ListConnectionProfiles)},
+            new Scenario() { Title="Show All Profiles", ClassType=typeof(S5GetHostNames)},
             new Scenario() { Title="Internet Connected Profiles", ClassType=typeof(S2ListConnectionProfiles)},
             new Scenario() { Title="Filter Network Profiles", ClassType=typeof(S3ListConnectionProfiles)},
             new Scenario() { Title="Show Lan Identifiers", ClassType=typeof(S4ListLanIdentifiers)},
+            new Scenario() { Title="Show Host Names", ClassType=typeof(S5GetHostNames)},
         };
     }
 

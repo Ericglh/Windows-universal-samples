@@ -119,6 +119,12 @@
     <Compile Include="S4_ListLanIdentifiers.xaml.cs">
       <DependentUpon>S4_ListLanIdentifiers.xaml</DependentUpon>
     </Compile>
+    <Compile Include="S5_GetHostNames.xaml.cs">
+      <DependentUpon>S5_GetHostNames.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="S5_Scenarios.xaml.cs">
+      <DependentUpon>S5_Scenarios.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SampleConfiguration.cs" />
     <Compile Include="S1_ListConnectionProfiles.xaml.cs">
       <DependentUpon>S1_ListConnectionProfiles.xaml</DependentUpon>
@@ -158,6 +164,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="S4_ListLanIdentifiers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="S5_GetHostNames.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="S5_Scenarios.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -204,5 +204,3 @@ FakesAssemblies/
 # Custom ignores
 gallery.xml
 project.lock.json
-/Samples/NetworkInformation/cs/S5_Scenarios.xaml.cs
-/Samples/NetworkInformation/cs/S5_Scenarios.xaml

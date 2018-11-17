@@ -1,12 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Windows.Networking;
 using Windows.Networking.Connectivity;
 
 namespace NetworkInformationSample
 {
     public class NetworkInformationPrinting
     {
+        public static string WriteHostNames(HostName hostname)
+        {
+            if (hostname == null)
+            {
+                return "HostName is null";
+            }
+
+            string returnString = string.Empty;
+
+            returnString += "Canonical Name: " + hostname.CanonicalName + "\n";
+            returnString += "Display Name: " + hostname.DisplayName + "\n";
+            returnString += "Raw Name: " + hostname.RawName + "\n";
+            switch (hostname.Type)
+            {
+                case HostNameType.DomainName:
+                    returnString += "Type: DomainName\n";
+                    break;
+                case HostNameType.Ipv4:
+                    returnString += "Type: Ipv4\n";
+                    break;
+                case HostNameType.Ipv6:
+                    returnString += "Type: Ipv6\n";
+                    break;
+                case HostNameType.Bluetooth:
+                    returnString += "Type: Bluetooth\n";
+                    break;
+            }
+
+            returnString += "IP Information: ";
+            if (hostname.IPInformation == null)
+            {
+                returnString += "null\n";
+            }
+            else
+            {
+                returnString += "\n";
+                byte? prefixLength = hostname.IPInformation.PrefixLength;
+                returnString += "Prefix Length: " + (prefixLength.HasValue ? prefixLength.Value.ToString() : "null") + "\n";
+                returnString += "Network Adapter: ";
+                returnString += WriteNetworkAdapters(hostname.IPInformation.NetworkAdapter) + "\n";
+            }
+            returnString += "\n";
+            returnString += "================================================================================\n\n";
+            return returnString;
+        }
+
         public static string WriteLanIdentifiers(LanIdentifier lanIdentifier)
         {
             if (lanIdentifier == null)
@@ -14,6 +61,7 @@ namespace NetworkInformationSample
                 return "LanIdentifier is null";
 
             }
+
             string returnString = string.Empty;
 
             if (lanIdentifier.InfrastructureId != null)
@@ -72,7 +120,7 @@ namespace NetworkInformationSample
             returnString += "Connectivity Intervals: " + connectivityInterval + "\n";
             returnString += "Network Usage: " + networkUsage + "\n";
             returnString += "Provider Network Usage: " + providerNetworkUsage + "\n";
-            returnString += "List Network Adapters: " + WriteNetworkAdapters(profile) + "\n";
+            returnString += "List Network Adapters: " + WriteNetworkAdapters(profile.NetworkAdapter) + "\n";
             returnString += "================================================================================\n\n";
             return returnString;
         }
@@ -326,9 +374,8 @@ namespace NetworkInformationSample
             }
             return returnString;
         }
-        private static string WriteNetworkAdapters(ConnectionProfile profile)
+        private static string WriteNetworkAdapters(NetworkAdapter networkAdapter)
         {
-            NetworkAdapter networkAdapter = profile.NetworkAdapter;
             if (networkAdapter == null)
             {
                 return "null";
