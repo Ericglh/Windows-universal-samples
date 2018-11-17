@@ -28,9 +28,7 @@
             </Grid.RowDefinitions>
             <StackPanel Margin="0,0,0,10">
                 <TextBlock Text="Description:" Style="{StaticResource SampleHeaderTextStyle}"/>
-                <TextBlock Style="{StaticResource ScenarioDescriptionTextStyle}" TextWrapping="Wrap">
-                    Enumerate Radios, and display toggles for each one
-                </TextBlock>
+                <TextBlock Text="Enumerate Radios, and display toggles for each one" Style="{StaticResource ScenarioDescriptionTextStyle}" TextWrapping="Wrap"/>
             </StackPanel>
 
             <ScrollViewer Grid.Row="1" VerticalScrollMode="Auto" VerticalScrollBarVisibility="Auto">

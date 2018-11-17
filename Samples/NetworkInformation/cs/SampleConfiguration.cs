@@ -12,17 +12,17 @@
 using System;
 using System.Collections.Generic;
 using Windows.UI.Xaml.Controls;
-using RadioManagerSample;
+using NetworkInformationSample;
 
 namespace SDKTemplate
 {
     public partial class MainPage : Page
     {
-        public const string FEATURE_NAME = "RadioManager C# Sample";
+        public const string FEATURE_NAME = "NetworkInformation C# Sample";
 
-        private readonly List<Scenario> scenarios = new List<Scenario>
+        readonly List<Scenario> scenarios = new List<Scenario>
         {
-            new Scenario() { Title="Toggle Radios", ClassType=typeof(Scenario1)}
+            new Scenario() { Title="List Connection Profiles", ClassType=typeof(S1ListConnectionProfiles)}
         };
     }
 

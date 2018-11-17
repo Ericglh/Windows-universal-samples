@@ -19,7 +19,7 @@ namespace RadioManagerSample
 {
     public sealed partial class Scenario1 : Page
     {
-        private MainPage rootPage;
+        private MainPage _rootPage;
 
         public Scenario1()
         {
@@ -28,18 +28,16 @@ namespace RadioManagerSample
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            rootPage = MainPage.Current;
+            _rootPage = MainPage.Current;
 
             // RequestAccessAsync must be called at least once from the UI thread
             var accessLevel = await Radio.RequestAccessAsync();
             if (accessLevel != RadioAccessStatus.Allowed)
             {
-                rootPage.NotifyUser("App is not allowed to control radios.", NotifyType.ErrorMessage);
+                _rootPage.NotifyUser("App is not allowed to control radios.", NotifyType.ErrorMessage);
             }
-            else
-            {
-                InitializeRadios();
-            }
+
+            InitializeRadios();
         }
 
         private async void InitializeRadios()
@@ -49,7 +47,7 @@ namespace RadioManagerSample
             var radios = await Radio.GetRadiosAsync();
             foreach (var radio in radios)
             {
-                RadioSwitchList.Items.Add(new RadioModel(radio, this));
+                RadioSwitchList.Items?.Add(new RadioModel(radio, this));
             }
         }
     }

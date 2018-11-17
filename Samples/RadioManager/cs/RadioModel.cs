@@ -21,58 +21,43 @@ namespace RadioManagerSample
 {
     public class RadioModel : INotifyPropertyChanged
     {
-        private Radio radio;
-        private bool isEnabled;
-        private UIElement parent;
+        private readonly Radio _radio;
+        private bool _isEnabled;
+        private readonly UIElement _parent;
 
         public RadioModel(Radio radio, UIElement parent)
         {
-            this.radio = radio;
+            _radio = radio;
             // Controlling the mobile broadband radio requires a restricted capability.
-            this.isEnabled = (radio.Kind != RadioKind.MobileBroadband);
-            this.parent = parent;
-            this.radio.StateChanged += Radio_StateChanged;
+            _isEnabled = (radio.Kind != RadioKind.MobileBroadband);
+            _parent = parent;
+            _radio.StateChanged += Radio_StateChanged;
         }
 
         private async void Radio_StateChanged(Radio sender, object args)
         {
             // The Radio StateChanged event doesn't run from the UI thread, so we must use the dispatcher
             // to run NotifyPropertyChanged
-            await this.parent.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await _parent.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 NotifyPropertyChanged("IsRadioOn");
             });
         }
 
-        public string Name
-        {
-            get
-            {
-                return this.radio.Name;
-            }
-        }
+        public string Name => _radio.Name;
 
         public bool IsRadioOn
         {
-            get
-            {
-                return this.radio.State == RadioState.On;
-            }
-            set
-            {
-                SetRadioState(value);
-            }
+            get => _radio.State == RadioState.On;
+            set => SetRadioState(value);
         }
 
         public bool IsEnabled
         {
-            get
-            {
-                return this.isEnabled;
-            }
+            get => _isEnabled;
             set
             {
-                this.isEnabled = value;
+                _isEnabled = value;
                 NotifyPropertyChanged();
             }
         }
@@ -81,17 +66,14 @@ namespace RadioManagerSample
 
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private async void SetRadioState(bool isRadioOn)
         {
             var radioState = isRadioOn ? RadioState.On : RadioState.Off;
             Disable();
-            await this.radio.SetStateAsync(radioState);
+            await _radio.SetStateAsync(radioState);
             NotifyPropertyChanged("IsRadioOn");
             Enable();
         }
