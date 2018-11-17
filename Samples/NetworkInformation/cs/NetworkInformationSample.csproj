@@ -113,6 +113,9 @@
     <Compile Include="S2_ListInternetConnectionProfile.xaml.cs">
       <DependentUpon>S2_ListInternetConnectionProfile.xaml</DependentUpon>
     </Compile>
+    <Compile Include="S3_FilterConnectionProfiles.xaml.cs">
+      <DependentUpon>S3_FilterConnectionProfiles.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SampleConfiguration.cs" />
     <Compile Include="S1_ListConnectionProfiles.xaml.cs">
       <DependentUpon>S1_ListConnectionProfiles.xaml</DependentUpon>
@@ -144,6 +147,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="S2_ListInternetConnectionProfile.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="S3_FilterConnectionProfiles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

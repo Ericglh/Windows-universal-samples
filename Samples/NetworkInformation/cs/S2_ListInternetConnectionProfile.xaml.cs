@@ -19,9 +19,6 @@ using SDKTemplate;
 
 namespace NetworkInformationSample
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class S2ListConnectionProfiles : Page
     {
         private readonly MainPage _rootPage = MainPage.Current;
@@ -40,15 +37,15 @@ namespace NetworkInformationSample
         {
             OutputText.Text = string.Empty;
 
-            var startTime = DateTimeOffset.Now;
             try
             {
+                var startTime = DateTimeOffset.Now;
+
                 var task = Task.Run(() => NetworkInformationPrinting.WriteConnectionProfiles(NetworkInformation.GetInternetConnectionProfile()));
                 task.Wait();
-                OutputText.Text += task.Result;
-
                 var endTime = DateTimeOffset.Now;
 
+                OutputText.Text += task.Result;
                 OutputText.Text += "Time taken: " + (endTime - startTime).TotalMilliseconds + " ms.\n";
 
                 Debug.WriteLine(OutputText.Text);

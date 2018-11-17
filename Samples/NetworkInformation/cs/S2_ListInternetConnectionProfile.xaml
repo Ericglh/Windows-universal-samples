@@ -12,7 +12,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Margin="0,0,0,10">
+            <StackPanel Margin="10,10,10,10">
                 <TextBlock Text="Description:" Style="{StaticResource SampleHeaderTextStyle}"/>
                 <TextBlock Text ="Enumerate Connection Profiles"  Style="{StaticResource ScenarioDescriptionTextStyle}" TextWrapping="Wrap" Height="30" VerticalAlignment="Center" />
                 <Grid x:Name="ButtonGrid">
@@ -20,8 +20,8 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Button x:Name="S1ClearButton" Content="Clear" Click="S2_ClearClickEvent" Height="30" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center"/>
-                    <Button x:Name="S1RefreshButton" Content="Refresh Internet Connected Profiles" Click="S2_RefreshClickEvent" Height="30" HorizontalAlignment="Left" Margin="100,0,0,0" VerticalAlignment="Center"/>
+                    <Button x:Name="S2ClearButton" Content="Clear" Click="S2_ClearClickEvent" Height="30" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                    <Button x:Name="S2RefreshButton" Content="Refresh Internet Connected Profiles" Click="S2_RefreshClickEvent" Height="30" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Center"/>
                 </Grid>
             </StackPanel>
 

@@ -24,6 +24,7 @@ namespace SDKTemplate
         {
             new Scenario() { Title="Show All Profiles", ClassType=typeof(S1ListConnectionProfiles)},
             new Scenario() { Title="Internet Connected Profiles", ClassType=typeof(S2ListConnectionProfiles)},
+            new Scenario() { Title="Filter Network Profiles", ClassType=typeof(S3ListConnectionProfiles)},
         };
     }
 

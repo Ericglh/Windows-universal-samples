@@ -20,9 +20,6 @@ using SDKTemplate;
 
 namespace NetworkInformationSample
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class S1ListConnectionProfiles : Page
     {
         private readonly MainPage _rootPage = MainPage.Current;
@@ -45,7 +42,6 @@ namespace NetworkInformationSample
                 var startTime = DateTimeOffset.Now;
 
                 var tasks = new List<Task<string>>();
-                // write each in parallel as they are async
                 foreach (ConnectionProfile profile in NetworkInformation.GetConnectionProfiles())
                 {
                     tasks.Add(Task.Run(() => NetworkInformationPrinting.WriteConnectionProfiles(profile)));
