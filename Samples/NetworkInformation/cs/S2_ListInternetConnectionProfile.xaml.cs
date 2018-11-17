@@ -10,7 +10,6 @@
 //*********************************************************
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.Networking.Connectivity;
@@ -23,38 +22,30 @@ namespace NetworkInformationSample
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class S1ListConnectionProfiles : Page
+    public sealed partial class S2ListConnectionProfiles : Page
     {
         private readonly MainPage _rootPage = MainPage.Current;
 
-        public S1ListConnectionProfiles()
+        public S2ListConnectionProfiles()
         {
             this.InitializeComponent();
         }
 
-        private void S1_ClearClickEvent(object sender, RoutedEventArgs e)
+        private void S2_ClearClickEvent(object sender, RoutedEventArgs e)
         {
             OutputText.Text = string.Empty;
         }
-        private void S1_RefreshClickEvent(object sender, RoutedEventArgs e)
+
+        private void S2_RefreshClickEvent(object sender, RoutedEventArgs e)
         {
             OutputText.Text = string.Empty;
 
+            var startTime = DateTimeOffset.Now;
             try
             {
-                var startTime = DateTimeOffset.Now;
-
-                var tasks = new List<Task<string>>();
-                // write each in parallel as they are async
-                foreach (ConnectionProfile profile in NetworkInformation.GetConnectionProfiles())
-                {
-                    tasks.Add(Task.Run(() => NetworkInformationPrinting.WriteConnectionProfiles(profile)));
-                }
-                foreach (Task<string> task in tasks)
-                {
-                    task.Wait();
-                    OutputText.Text += task.Result;
-                }
+                var task = Task.Run(() => NetworkInformationPrinting.WriteConnectionProfiles(NetworkInformation.GetInternetConnectionProfile()));
+                task.Wait();
+                OutputText.Text += task.Result;
 
                 var endTime = DateTimeOffset.Now;
 

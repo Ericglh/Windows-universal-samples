@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="NetworkInformationSample.S1ListConnectionProfiles"
+    x:Class="NetworkInformationSample.S2ListConnectionProfiles"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -20,8 +20,8 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Button x:Name="S1ClearButton" Content="Clear" Click="S1_ClearClickEvent" Height="30" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center"/>
-                    <Button x:Name="S1RefreshButton" Content="Refresh All Profiles" Click="S1_RefreshClickEvent" Height="30" HorizontalAlignment="Left" Margin="100,0,0,0" VerticalAlignment="Center"/>
+                    <Button x:Name="S1ClearButton" Content="Clear" Click="S2_ClearClickEvent" Height="30" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                    <Button x:Name="S1RefreshButton" Content="Refresh Internet Connected Profiles" Click="S2_RefreshClickEvent" Height="30" HorizontalAlignment="Left" Margin="100,0,0,0" VerticalAlignment="Center"/>
                 </Grid>
             </StackPanel>
 

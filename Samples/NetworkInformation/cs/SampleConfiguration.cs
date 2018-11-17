@@ -22,7 +22,8 @@ namespace SDKTemplate
 
         readonly List<Scenario> scenarios = new List<Scenario>
         {
-            new Scenario() { Title="List Connection Profiles", ClassType=typeof(S1ListConnectionProfiles)}
+            new Scenario() { Title="Show All Profiles", ClassType=typeof(S1ListConnectionProfiles)},
+            new Scenario() { Title="Internet Connected Profiles", ClassType=typeof(S2ListConnectionProfiles)},
         };
     }
 

@@ -109,6 +109,10 @@
     <Compile Include="..\..\..\SharedContent\cs\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="NetworkInformationPrinting.cs" />
+    <Compile Include="S2_ListInternetConnectionProfile.xaml.cs">
+      <DependentUpon>S2_ListInternetConnectionProfile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SampleConfiguration.cs" />
     <Compile Include="S1_ListConnectionProfiles.xaml.cs">
       <DependentUpon>S1_ListConnectionProfiles.xaml</DependentUpon>
@@ -136,6 +140,10 @@
     </Page>
     <Page Include="..\..\..\SharedContent\xaml\Styles.xaml">
       <Link>Styles\Styles.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="S2_ListInternetConnectionProfile.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
