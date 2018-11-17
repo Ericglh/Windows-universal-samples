@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="NetworkInformationSample.S2ListConnectionProfiles"
+    x:Class="NetworkInformationSample.S4ListLanIdentifiers"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -16,12 +16,12 @@
                 <TextBlock Text="Description:" Style="{StaticResource SampleHeaderTextStyle}"/>
                 <TextBlock Text ="Enumerate Connection Profiles"  Style="{StaticResource ScenarioDescriptionTextStyle}" TextWrapping="Wrap" Height="30" VerticalAlignment="Center" />
                 <Grid x:Name="ButtonGrid">
-                    <Button Content="Clear" Click="S2_ClearClickEvent" Height="30" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                    <Button Content="Refresh Internet Connected Profiles" Click="S2_RefreshClickEvent" Height="30" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Center"/>
+                    <Button Content="Clear" Click="S4_ClearClickEvent" Height="30" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                    <Button Content="Refresh LAN Identifiers" Click="S4_RefreshClickEvent" Height="30" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Center"/>
                 </Grid>
             </StackPanel>
 
-            <ScrollViewer Grid.Row="1" VerticalScrollMode="Auto" VerticalScrollBarVisibility="Auto">
+            <ScrollViewer Grid.Row="1" Margin="10,10,10,10" VerticalScrollMode="Auto" VerticalScrollBarVisibility="Auto">
                 <TextBlock x:Name="OutputText" TextWrapping="Wrap" Style="{StaticResource BasicTextStyle}" />
             </ScrollViewer>
         </Grid>

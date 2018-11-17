@@ -7,6 +7,43 @@ namespace NetworkInformationSample
 {
     public class NetworkInformationPrinting
     {
+        public static string WriteLanIdentifiers(LanIdentifier lanIdentifier)
+        {
+            if (lanIdentifier == null)
+            {
+                return "LanIdentifier is null";
+
+            }
+            string returnString = string.Empty;
+
+            if (lanIdentifier.InfrastructureId != null)
+            {
+                returnString += "\n";
+                returnString += "Infrastructure Type: " + lanIdentifier.InfrastructureId.Type + "\n";
+                returnString += "Infrastructure Value: ";
+                foreach (var value in lanIdentifier.InfrastructureId.Value)
+                {
+                    returnString += value + " ";
+                }
+            }
+
+            if (lanIdentifier.PortId != null)
+            {
+                returnString += "\n";
+                returnString += "Port Type : " + lanIdentifier.PortId.Type + "\n";
+                returnString += "Port Value: ";
+                foreach (var value in lanIdentifier.PortId.Value)
+                {
+                    returnString += value + " ";
+                }
+            }
+
+            returnString += "\n";
+            returnString += "Network Adapter Id : " + lanIdentifier.NetworkAdapterId + "\n";
+            returnString += "================================================================================\n\n";
+            return returnString;
+        }
+
         public static async Task<string> WriteConnectionProfiles(ConnectionProfile profile)
         {
             if (profile == null)

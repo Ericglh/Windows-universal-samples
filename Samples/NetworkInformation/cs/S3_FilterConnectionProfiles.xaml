@@ -152,7 +152,7 @@
                         <ComboBoxItem Content="Unknown"/>
                     </ComboBox>
 
-                    <StackPanel VerticalAlignment="Bottom" Orientation="Vertical" Grid.Row="7" Grid.Column="0">
+                    <StackPanel Grid.Row="7" Grid.Column="0" VerticalAlignment="Bottom" Orientation="Vertical">
                         <Button Content="Filter Connection Profile" Margin="10,10,10,10" Click="S3_ButtonClick"/>
                     </StackPanel>
                 </Grid>

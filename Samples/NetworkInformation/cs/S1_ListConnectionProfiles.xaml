@@ -16,12 +16,8 @@
                 <TextBlock Text="Description:" Style="{StaticResource SampleHeaderTextStyle}"/>
                 <TextBlock Text ="Enumerate Connection Profiles"  Style="{StaticResource ScenarioDescriptionTextStyle}" TextWrapping="Wrap" Height="30" VerticalAlignment="Center" />
                 <Grid x:Name="ButtonGrid">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Button x:Name="S1ClearButton" Content="Clear" Click="S1_ClearClickEvent" Height="30" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                    <Button x:Name="S1RefreshButton" Content="Refresh All Profiles" Click="S1_RefreshClickEvent" Height="30" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Center"/>
+                    <Button Content="Clear" Click="S1_ClearClickEvent" Height="30" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                    <Button Content="Refresh All Profiles" Click="S1_RefreshClickEvent" Height="30" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Center"/>
                 </Grid>
             </StackPanel>
 
