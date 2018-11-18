@@ -30,11 +30,54 @@ namespace NetworkInformationSample
 
         private void S2_ClearClickEvent(object sender, RoutedEventArgs e)
         {
+            NetworkInformation.NetworkStatusChanged -= S2_NetworkStatusChangedEventHandler;
             OutputText.Text = string.Empty;
         }
 
-        private void S2_RefreshClickEvent(object sender, RoutedEventArgs e)
+        private void S2_RefreshSimpleClickEvent(object sender, RoutedEventArgs e)
         {
+            NetworkInformation.NetworkStatusChanged -= S2_NetworkStatusChangedEventHandler;
+            OutputText.Text = string.Empty;
+
+            try
+            {
+                var startTime = DateTimeOffset.Now;
+
+                string returnString = string.Empty;
+                var profile = NetworkInformation.GetInternetConnectionProfile();
+                if (profile == null)
+                {
+                    returnString += "GetInternetConnectionProfile ConnectionProfile is null";
+                }
+                else
+                {
+                    returnString += "================================================================================\n\n";
+                    returnString += "Profile Name: " + profile.ProfileName + "\n";
+                    returnString += "Network Connectivity Level: " +
+                                    NetworkInformationPrinting.WriteNetworkConnectivityLevel(profile) + "\n";
+                    returnString += "Domain Connectivity Level: " +
+                                    NetworkInformationPrinting.WriteDomainConnectivityLevel(profile) + "\n";
+                    returnString += "Connection Cost: " +
+                                    NetworkInformationPrinting.WriteConnectionCost(profile) + "\n";
+                }
+
+                var endTime = DateTimeOffset.Now;
+
+                OutputText.Text += returnString;
+                OutputText.Text += "Time taken: " + (endTime - startTime).TotalMilliseconds + " ms.\n";
+
+                Debug.WriteLine(OutputText.Text);
+                _rootPage.NotifyUser("Success", NotifyType.StatusMessage);
+            }
+            catch (Exception ex)
+            {
+                _rootPage.NotifyUser(ex.ToString(), NotifyType.ErrorMessage);
+            }
+        }
+
+        private void S2_RefreshDetailedClickEvent(object sender, RoutedEventArgs e)
+        {
+            NetworkInformation.NetworkStatusChanged -= S2_NetworkStatusChangedEventHandler;
             OutputText.Text = string.Empty;
 
             try
@@ -46,6 +89,60 @@ namespace NetworkInformationSample
                 var endTime = DateTimeOffset.Now;
 
                 OutputText.Text += task.Result;
+                OutputText.Text += "Time taken: " + (endTime - startTime).TotalMilliseconds + " ms.\n";
+
+                Debug.WriteLine(OutputText.Text);
+                _rootPage.NotifyUser("Success", NotifyType.StatusMessage);
+            }
+            catch (Exception ex)
+            {
+                _rootPage.NotifyUser(ex.ToString(), NotifyType.ErrorMessage);
+            }
+        }
+
+        private void S2_RegisterForChangesClickEvent(object sender, RoutedEventArgs e)
+        {
+            OutputText.Text = string.Empty;
+
+            try
+            {
+                NetworkInformation.NetworkStatusChanged += S2_NetworkStatusChangedEventHandler;
+                OutputText.Text += "Successfully registered for Network status changes\n";
+                OutputText.Text += "Will update this window with the current Internet profile as changes are indicated\n\n";
+            }
+            catch (Exception ex)
+            {
+                _rootPage.NotifyUser(ex.ToString(), NotifyType.ErrorMessage);
+            }
+        }
+
+        private void S2_NetworkStatusChangedEventHandler(object eventObject)
+        {
+            try
+            {
+                var startTime = DateTimeOffset.Now;
+
+                string returnString = string.Empty;
+                var profile = NetworkInformation.GetInternetConnectionProfile();
+                if (profile == null)
+                {
+                    returnString += "GetInternetConnectionProfile ConnectionProfile is null";
+                }
+                else
+                {
+                    returnString += "================================================================================\n\n";
+                    returnString += "Profile Name: " + profile.ProfileName + "\n";
+                    returnString += "Network Connectivity Level: " +
+                                    NetworkInformationPrinting.WriteNetworkConnectivityLevel(profile) + "\n";
+                    returnString += "Domain Connectivity Level: " +
+                                    NetworkInformationPrinting.WriteDomainConnectivityLevel(profile) + "\n";
+                    returnString += "Connection Cost: " +
+                                    NetworkInformationPrinting.WriteConnectionCost(profile) + "\n";
+                }
+
+                var endTime = DateTimeOffset.Now;
+
+                OutputText.Text += returnString;
                 OutputText.Text += "Time taken: " + (endTime - startTime).TotalMilliseconds + " ms.\n";
 
                 Debug.WriteLine(OutputText.Text);

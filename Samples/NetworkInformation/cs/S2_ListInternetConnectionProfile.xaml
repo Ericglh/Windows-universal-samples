@@ -17,7 +17,9 @@
                 <TextBlock Text ="Enumerate Connection Profiles"  Style="{StaticResource ScenarioDescriptionTextStyle}" TextWrapping="Wrap" Height="30" VerticalAlignment="Center" />
                 <Grid x:Name="ButtonGrid">
                     <Button Content="Clear" Click="S2_ClearClickEvent" Height="30" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                    <Button Content="Refresh Internet Connected Profiles" Click="S2_RefreshClickEvent" Height="30" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Center"/>
+                    <Button Content="Refresh with Connectivity Information" Click="S2_RefreshSimpleClickEvent" Height="30" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Center"/>
+                    <Button Content="Refresh with Detailed Profile Information" Click="S2_RefreshDetailedClickEvent" Height="30" HorizontalAlignment="Left" Margin="364,0,0,0" VerticalAlignment="Center"/>
+                    <Button Content="Register for Profile Changes" Click="S2_RegisterForChangesClickEvent" Height="30" HorizontalAlignment="Left" Margin="668,0,0,0" VerticalAlignment="Center"/>
                 </Grid>
             </StackPanel>
 

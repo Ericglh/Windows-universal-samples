@@ -9,19 +9,22 @@
         <Grid x:Name="RootGrid" Margin="12,20,12,12">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.Row="0" Margin="10,10,10,10">
-                <TextBlock Text="Description:" Style="{StaticResource SampleHeaderTextStyle}"/>
-                <TextBlock Text ="Enumerate Connection Profiles"  Style="{StaticResource ScenarioDescriptionTextStyle}" TextWrapping="Wrap" Height="30" VerticalAlignment="Center" />
-                <Grid x:Name="ButtonGrid">
+            <TextBlock Grid.Row="0" Text="Description:" Style="{StaticResource SampleHeaderTextStyle}"/>
+            <TextBlock Grid.Row="1" Text ="Enumerate Connection Profiles"  Style="{StaticResource ScenarioDescriptionTextStyle}" TextWrapping="Wrap" Height="30" VerticalAlignment="Center" />
+            <StackPanel Grid.Row="2" Margin="10,10,10,10">
+                <Grid>
                     <Button Content="Clear" Click="S1_ClearClickEvent" Height="30" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                    <Button Content="Refresh All Profiles" Click="S1_RefreshClickEvent" Height="30" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Center"/>
+                    <Button Content="Refresh with Connectivity Information" Click="S1_RefreshSimpleClickEvent" Height="30" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Center"/>
+                    <Button Content="Refresh with Detailed Profile Information" Click="S1_RefreshDetailedClickEvent" Height="30" HorizontalAlignment="Left" Margin="364,0,0,0" VerticalAlignment="Center"/>
                 </Grid>
             </StackPanel>
 
-            <ScrollViewer Grid.Row="1" Margin="10,10,10,10" VerticalScrollMode="Auto" VerticalScrollBarVisibility="Auto">
+            <ScrollViewer Grid.Row="3" Margin="10,10,10,10" VerticalScrollMode="Auto" VerticalScrollBarVisibility="Auto">
                 <TextBlock x:Name="OutputText" TextWrapping="Wrap" Style="{StaticResource BasicTextStyle}" />
             </ScrollViewer>
         </Grid>

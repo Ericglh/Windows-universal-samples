@@ -33,7 +33,52 @@ namespace NetworkInformationSample
         {
             OutputText.Text = string.Empty;
         }
-        private void S1_RefreshClickEvent(object sender, RoutedEventArgs e)
+
+        private void S1_RefreshSimpleClickEvent(object sender, RoutedEventArgs e)
+        {
+            OutputText.Text = string.Empty;
+
+            try
+            {
+                var startTime = DateTimeOffset.Now;
+
+                var tasks = new List<Task<string>>();
+                foreach (ConnectionProfile profile in NetworkInformation.GetConnectionProfiles())
+                {
+                    tasks.Add(Task.Run(() =>
+                    {
+                        string returnString = string.Empty;
+                        returnString += "================================================================================\n\n";
+                        returnString += "Profile Name: " + profile.ProfileName + "\n";
+                        returnString += "Network Connectivity Level: " + 
+                                        NetworkInformationPrinting.WriteNetworkConnectivityLevel(profile) + "\n";
+                        returnString += "Domain Connectivity Level: " + 
+                                        NetworkInformationPrinting.WriteDomainConnectivityLevel(profile) + "\n";
+                        returnString += "Connection Cost: " + 
+                                        NetworkInformationPrinting.WriteConnectionCost(profile) + "\n";
+                        return returnString;
+                    }));
+                }
+                foreach (Task<string> task in tasks)
+                {
+                    task.Wait();
+                    OutputText.Text += task.Result;
+                }
+
+                var endTime = DateTimeOffset.Now;
+
+                OutputText.Text += "Time taken: " + (endTime - startTime).TotalMilliseconds + " ms.\n";
+
+                Debug.WriteLine(OutputText.Text);
+                _rootPage.NotifyUser("Success", NotifyType.StatusMessage);
+            }
+            catch (Exception ex)
+            {
+                _rootPage.NotifyUser(ex.ToString(), NotifyType.ErrorMessage);
+            }
+        }
+
+        private void S1_RefreshDetailedClickEvent(object sender, RoutedEventArgs e)
         {
             OutputText.Text = string.Empty;
 

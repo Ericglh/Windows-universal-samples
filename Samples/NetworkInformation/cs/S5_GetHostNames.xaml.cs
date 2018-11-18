@@ -31,7 +31,7 @@ namespace NetworkInformationSample
         {
             OutputText.Text = string.Empty;
         }
-        private void S5_RefreshClickEvent(object sender, RoutedEventArgs e)
+        private void S5_GetHostNamesClickEvent(object sender, RoutedEventArgs e)
         {
             OutputText.Text = string.Empty;
 
@@ -41,6 +41,7 @@ namespace NetworkInformationSample
 
                 foreach (var hostname in NetworkInformation.GetHostNames())
                 {
+                    // debating to offer an button to also reference the profile for each hostname
                     OutputText.Text += NetworkInformationPrinting.WriteHostNames(hostname);
                 }
 
