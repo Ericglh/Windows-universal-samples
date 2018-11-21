@@ -116,42 +116,45 @@ namespace NetworkInformationSample
             }
         }
 
-        private void S2_NetworkStatusChangedEventHandler(object eventObject)
+        private async void S2_NetworkStatusChangedEventHandler(object eventObject)
         {
-            try
-            {
-                var startTime = DateTimeOffset.Now;
-
-                string returnString = string.Empty;
-                var profile = NetworkInformation.GetInternetConnectionProfile();
-                if (profile == null)
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            { 
+                try
                 {
-                    returnString += "GetInternetConnectionProfile ConnectionProfile is null";
+                    var startTime = DateTimeOffset.Now;
+
+                    string returnString = string.Empty;
+                    var profile = NetworkInformation.GetInternetConnectionProfile();
+                    if (profile == null)
+                    {
+                        returnString += "GetInternetConnectionProfile ConnectionProfile is null";
+                    }
+                    else
+                    {
+                        returnString += "================================================================================\n\n";
+                        returnString += "Profile Name: " + profile.ProfileName + "\n";
+                        returnString += "Network Connectivity Level: " +
+                                        NetworkInformationPrinting.WriteNetworkConnectivityLevel(profile) + "\n";
+                        returnString += "Domain Connectivity Level: " +
+                                        NetworkInformationPrinting.WriteDomainConnectivityLevel(profile) + "\n";
+                        returnString += "Connection Cost: " +
+                                        NetworkInformationPrinting.WriteConnectionCost(profile) + "\n";
+                    }
+
+                    var endTime = DateTimeOffset.Now;
+
+                    OutputText.Text += returnString;
+                    OutputText.Text += "Time taken: " + (endTime - startTime).TotalMilliseconds + " ms.\n";
+
+                    Debug.WriteLine(OutputText.Text);
+                    _rootPage.NotifyUser("Success", NotifyType.StatusMessage);
                 }
-                else
+                catch (Exception ex)
                 {
-                    returnString += "================================================================================\n\n";
-                    returnString += "Profile Name: " + profile.ProfileName + "\n";
-                    returnString += "Network Connectivity Level: " +
-                                    NetworkInformationPrinting.WriteNetworkConnectivityLevel(profile) + "\n";
-                    returnString += "Domain Connectivity Level: " +
-                                    NetworkInformationPrinting.WriteDomainConnectivityLevel(profile) + "\n";
-                    returnString += "Connection Cost: " +
-                                    NetworkInformationPrinting.WriteConnectionCost(profile) + "\n";
+                    _rootPage.NotifyUser(ex.ToString(), NotifyType.ErrorMessage);
                 }
-
-                var endTime = DateTimeOffset.Now;
-
-                OutputText.Text += returnString;
-                OutputText.Text += "Time taken: " + (endTime - startTime).TotalMilliseconds + " ms.\n";
-
-                Debug.WriteLine(OutputText.Text);
-                _rootPage.NotifyUser("Success", NotifyType.StatusMessage);
-            }
-            catch (Exception ex)
-            {
-                _rootPage.NotifyUser(ex.ToString(), NotifyType.ErrorMessage);
-            }
+            });
         }
     }
 }
