@@ -109,6 +109,9 @@
     <Compile Include="..\..\..\SharedContent\cs\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="S6_WwanGetConnectionProfiles.xaml.cs">
+      <DependentUpon>S6_WwanGetConnectionProfiles.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NetworkInformationPrinting.cs" />
     <Compile Include="S2_ListInternetConnectionProfile.xaml.cs">
       <DependentUpon>S2_ListInternetConnectionProfile.xaml</DependentUpon>
@@ -145,6 +148,10 @@
       <Link>MainPage.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="S6_WwanGetConnectionProfiles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="S1_ListConnectionProfiles.xaml">
       <Generator>MSBuild:Compile</Generator>

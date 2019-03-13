@@ -27,6 +27,7 @@ namespace SDKTemplate
             new Scenario() { Title="Filter Network Profiles", ClassType=typeof(S3ListConnectionProfiles)},
             new Scenario() { Title="Show Lan Identifiers", ClassType=typeof(S4ListLanIdentifiers)},
             new Scenario() { Title="Show Host Information", ClassType=typeof(S5GetHostNames)},
+            new Scenario() { Title="Wwan Get Connection Profiles", ClassType=typeof(S6WwanGetConnectionProfiles)},
         };
     }
 
